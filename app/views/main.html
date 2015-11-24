@@ -32,11 +32,41 @@
   </div>
 </div>
 
-<!-- Books repeat -->
+<div class="row">
 
-<li dir-paginate="book in books | itemsPerPage: 10" total-items="totalBooks" current-page="pagination.current">
-  {{book._source.description}}
-</li>
+<!-- Books repeat -->
+  <li class="col-md-4 book" dir-paginate="book in books | itemsPerPage: 10" total-items="totalBooks" current-page="pagination.current">
+    <!-- Image -->
+    <a ng-href="/books/{{book._id}}">
+      <div class="img">
+        <img ng-src="{{book._source.cover}}" alt="">
+      </div>
+    </a>
+
+    <!-- title -->
+    <a href="">
+      <div class="title">
+        {{book._source.name}}.        
+      </div>
+    </a>
+
+    <!-- Author -->
+    <a href="">
+      <div class="title">
+        By {{book._source.author.name}}.        
+      </div>
+    </a>
+
+    <div class="likes pull-left">
+      <i>font awesome icon</i> {{book._source.likes}}
+    </div>
+
+    <div class="time pull-right">
+      {{book._source.published | relativeDate}}
+    </div>
+  </li>
+</div>
+
 
 <h1 data-ng-hide="books || books.length">No Books Found</h1> 
     

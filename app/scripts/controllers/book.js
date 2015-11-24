@@ -8,10 +8,8 @@
  * Controller of the reedsyChallengeApp
  */
 angular.module('reedsyChallengeApp')
-  .controller('BookCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('BookCtrl', function (book) {
+
+window.alert(book);
+
   });

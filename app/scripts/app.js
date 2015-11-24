@@ -16,9 +16,11 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'relativeDate'
   ])
-  .config(function ($routeProvider) {
+  .constant('production', false)
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -32,12 +34,27 @@ angular
            }
         }
       })
-      .when('/book/:bookId', {
+      .when('/books/:bookId', {
         templateUrl: 'views/book.html',
         controller: 'BookCtrl',
-        controllerAs: 'book'
+        controllerAs: 'book',
+        book: function(Books, $stateParams) {
+            return  Books.get({bookId: $stateParams.bookId}).$promise.then(function(book){
+              return book;
+            });
+          }
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+
+      $locationProvider.html5Mode(true);
+  })
+
+  // Disable debug info and boost the performance
+
+  .config(['$compileProvider', 'production', function ($compileProvider, production) {
+      if(production) {
+          $compileProvider.debugInfoEnabled(false);
+      }
+  }]);

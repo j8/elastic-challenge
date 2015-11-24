@@ -17,7 +17,7 @@ angular.module('reedsyChallengeApp')
         method: 'PUT'
       },
       query: {
-        method:'GET', isArray:false
+        method:'GET', isArray: false
       }
     }
     );

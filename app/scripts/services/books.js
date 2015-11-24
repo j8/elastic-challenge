@@ -11,7 +11,7 @@ angular.module('reedsyChallengeApp')
   .factory('Books', function ($resource) {
 
     // Public API here
-    return $resource('http://localhost:8080/books/:bookId', {bookId:'@id'}, 
+    return $resource('http://localhost:8080/api/books/:bookId', {bookId:'@id'}, 
     {
       update: {
         method: 'PUT'

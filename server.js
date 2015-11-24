@@ -20,7 +20,7 @@ server.use(
 
 // Fetch all books
 
-server.get('/books', function(req, res, next) {
+server.get('api/books', function(req, res, next) {
 
   var perPage = 10
   , page = Math.max(0, req.query.page) - 1;
@@ -36,15 +36,14 @@ server.get('/books', function(req, res, next) {
 		match_all : {}
 	},
 	from: perPage * page,
-	size: perPage,
+	size: perPage
     }
   }).then(function (resp) {
       var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
-      console.trace(err.message);
-      res.status(500).json({
+      res.send({
       	error: err.message 
       });
       next();
@@ -54,7 +53,7 @@ server.get('/books', function(req, res, next) {
 
 // Fetch book by id
 
-server.get('/books/:id', function(req, res, next) {
+server.get('api/books/:id', function(req, res, next) {
 
   var perPage = 10
   , page = Math.max(0, req.query.page) - 1;
@@ -70,19 +69,60 @@ server.get('/books/:id', function(req, res, next) {
 		// match_all : {}
 	},
 	from: perPage * page,
-	size: perPage,
+	size: perPage
     }
   }).then(function (resp) {
       var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
-	console.trace(err.message);
-	res.status(500).json({
-		error: err.message 
-	});
-	next();
+    res.send({
+      error: err.message 
+    });
+    next();
   });
+
+});
+
+// Search
+
+server.get('api/search/books', function(req, res, next) {
+
+  var perPage = 10
+      , page = Math.max(0, req.query.page) - 1;
+
+      client.search({
+        index: 'books',
+        type: 'book',
+        body: {
+          // query: {
+          //   match: {
+          //     name: req.query.search
+          //   }
+          // },
+
+          "query": {
+            "bool": {
+              "should": [
+                { "match": { "name":  req.query.search }},
+                { "match": { "author.name": req.query.search   }}
+              ]
+            }
+          },
+
+          from: perPage * page,
+          size: perPage
+        }
+      }).then(function (resp) {
+          var hits = resp.hits;
+          res.send(hits);
+          next();
+      }, function (err) {
+        res.send({
+          error: err.message 
+        });
+        next();
+      });
 
 });
 

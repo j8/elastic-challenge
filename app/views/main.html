@@ -28,7 +28,20 @@
 
  </div>
   <div class="col-md-4">
-    <input type="email" class="form-control" id="search" placeholder="Search books">
+
+    <form name="searchForm" role="form" data-ng-submit="search()" novalidate class="default-form row">
+
+            <div class="col-xs-12 col-sm-4 form-item">
+              <input class="input" type="text" ng-model="query.keyword" class="form-control" id="search" placeholder="Search books">
+            </div>
+
+            <div class="col-xs-12 col-sm-4 form-item">
+              <button type="submit" class="btn-black" ng-click="search()"><span ng-hide="wait">Search</span><span ng-show="wait"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+              </button>
+            </div>
+
+      </form>
+
   </div>
 </div>
 
@@ -37,7 +50,7 @@
 <!-- Books repeat -->
   <li class="col-md-4 book" dir-paginate="book in books | itemsPerPage: 10" total-items="totalBooks" current-page="pagination.current">
     <!-- Image -->
-    <a ui-sref="books.book({bookId: book._id})">
+    <a ui-sref="book({bookId: book._id})">
       <div class="img">
         <img ng-src="{{book._source.cover}}" alt="">
       </div>

@@ -12,7 +12,6 @@ angular.module('reedsyChallengeApp')
 
 
   	// Init and assign to scope
-  	$scope.book = book.hits[0];
-  	console.log('book', $scope.book);
+  	$scope.bookEntry = book.hits[0];
   
   });

@@ -24,7 +24,6 @@ angular
     $stateProvider
       .state('books', {
         url: '/',
-        abstract: true,
         templateUrl: 'views/main.html',
         controller: 'IndexCtrl',
         controllerAs: 'index',
@@ -36,8 +35,8 @@ angular
            }
         }
       })
-      .state('books.book', {
-        url: ':bookId',
+      .state('book', {
+        url: '/books/:bookId',
         templateUrl: 'views/book.html',
         controller: 'BookCtrl',
         controllerAs: 'book',
@@ -50,7 +49,7 @@ angular
         }
       });
 
-      $urlRouterProvider.otherwise('404');
+      $urlRouterProvider.otherwise('/');
 
       // $locationProvider.html5Mode(true);
   })

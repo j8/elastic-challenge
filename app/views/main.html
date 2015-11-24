@@ -28,20 +28,9 @@
 
  </div>
   <div class="col-md-4">
-
-    <form name="searchForm" role="form" data-ng-submit="search()" novalidate class="default-form row">
-
-            <div class="col-xs-12 col-sm-4 form-item">
-              <input class="input" type="text" ng-model="query.keyword" class="form-control" id="search" placeholder="Search books">
-            </div>
-
-            <div class="col-xs-12 col-sm-4 form-item">
-              <button type="submit" class="btn-black" ng-click="search()"><span ng-hide="wait">Search</span><span ng-show="wait"><i class="fa fa-circle-o-notch fa-spin"></i></span>
-              </button>
-            </div>
-
-      </form>
-
+    <div class="col-xs-12 col-sm-4 form-item">
+      <input class="input" type="text" ng-model="query.keyword" class="form-control" id="search" placeholder="Search books" ng-model-options="{ debounce: 500 }">
+    </div>
   </div>
 </div>
 

@@ -104,8 +104,8 @@ server.get('api/search/books', function(req, res, next) {
           "query": {
             "bool": {
               "should": [
-                { "match": { "name":  req.query.search }},
-                { "match": { "author.name": req.query.search   }}
+                { "match": { "name":  req.query.q }},
+                { "match": { "author.name": req.query.q   }}
               ]
             }
           },

@@ -21,8 +21,20 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'IndexCtrl',
+        controllerAs: 'index',
+        resolve: {
+          books: function(Books) {
+             return Books.query({page: 1}).$promise.then(function(books){
+                 return books;
+               });
+           }
+        }
+      })
+      .when('/book/:bookId', {
+        templateUrl: 'views/book.html',
+        controller: 'BookCtrl',
+        controllerAs: 'book'
       })
       .otherwise({
         redirectTo: '/'

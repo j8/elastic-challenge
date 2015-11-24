@@ -8,28 +8,22 @@ var client = new elasticsearch.Client({
 var server = restify.createServer();
 server.use(restify.queryParser());
 
+// Enable CORS *** THIS IS FOR THE DEMO PURPOSES ONLY ***
+
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    return next();
+  }
+);
+
 // Fetch all books
 
 server.get('/books', function(req, res, next) {
 
   var perPage = 10
   , page = Math.max(0, req.query.page) - 1;
-
-  // Job.search({
-  //   match_all : {}
-  // },{
-  //     from: perPage * page,
-  //     size: perPage,
-  //     hydrate:true
-  // }, function(err, results) {
-  //     if (err) {
-  //         return res.status(500).json({
-  //             error: 'Cannot update the job ' + err 
-  //         });
-  //     }
-  //     // results here
-  //     res.json(results.hits)
-  // });
 
   client.search({
     index: 'books',
@@ -45,15 +39,18 @@ server.get('/books', function(req, res, next) {
 	size: perPage,
     }
   }).then(function (resp) {
-      var hits = resp.hits.hits;
+      var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
       console.trace(err.message);
+      res.status(500).json({
+      	error: err.message 
+      });
+      next();
   });
 
 });
-
 
 // Fetch book by id
 
@@ -61,22 +58,6 @@ server.get('/books/:id', function(req, res, next) {
 
   var perPage = 10
   , page = Math.max(0, req.query.page) - 1;
-
-  // Job.search({
-  //   match_all : {}
-  // },{
-  //     from: perPage * page,
-  //     size: perPage,
-  //     hydrate:true
-  // }, function(err, results) {
-  //     if (err) {
-  //         return res.status(500).json({
-  //             error: 'Cannot update the job ' + err 
-  //         });
-  //     }
-  //     // results here
-  //     res.json(results.hits)
-  // });
 
   client.search({
     index: 'books',
@@ -92,11 +73,15 @@ server.get('/books/:id', function(req, res, next) {
 	size: perPage,
     }
   }).then(function (resp) {
-      var hits = resp.hits.hits;
+      var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
-      console.trace(err.message);
+	console.trace(err.message);
+	res.status(500).json({
+		error: err.message 
+	});
+	next();
   });
 
 });

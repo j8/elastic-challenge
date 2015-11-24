@@ -16,15 +16,22 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Setup the backend
 
 # Mac OS X
+
+```
 brew install jq
+```
 
 # Ubuntu
-sudo apt-get install jq
 
+```
+sudo apt-get install jq
+```
 
 ### Install Elasticsearch
 
-brew instal elastic
+```
+brew install elastic
+```
 
 ### Insert books.json into Elasticsearch
 

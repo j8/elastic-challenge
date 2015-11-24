@@ -37,7 +37,7 @@
 <!-- Books repeat -->
   <li class="col-md-4 book" dir-paginate="book in books | itemsPerPage: 10" total-items="totalBooks" current-page="pagination.current">
     <!-- Image -->
-    <a ng-href="/books/{{book._id}}">
+    <a ui-sref="books.book({bookId: book._id})">
       <div class="img">
         <img ng-src="{{book._source.cover}}" alt="">
       </div>
@@ -58,7 +58,7 @@
     </a>
 
     <div class="likes pull-left">
-      <i>font awesome icon</i> {{book._source.likes}}
+      <span class="glyphicon glyphicon-heart"></span> {{book._source.likes}}
     </div>
 
     <div class="time pull-right">

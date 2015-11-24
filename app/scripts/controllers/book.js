@@ -8,8 +8,11 @@
  * Controller of the reedsyChallengeApp
  */
 angular.module('reedsyChallengeApp')
-  .controller('BookCtrl', function (book) {
+  .controller('BookCtrl', function ($scope, book) {
 
-window.alert(book);
 
+  	// Init and assign to scope
+  	$scope.book = book.hits[0];
+  	console.log('book', $scope.book);
+  
   });

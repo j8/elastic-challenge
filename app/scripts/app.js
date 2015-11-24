@@ -13,16 +13,18 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'angularUtils.directives.dirPagination',
     'relativeDate'
   ])
   .constant('production', false)
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      .state('books', {
+        url: '/',
+        abstract: true,
         templateUrl: 'views/main.html',
         controller: 'IndexCtrl',
         controllerAs: 'index',
@@ -34,21 +36,23 @@ angular
            }
         }
       })
-      .when('/books/:bookId', {
+      .state('books.book', {
+        url: ':bookId',
         templateUrl: 'views/book.html',
         controller: 'BookCtrl',
         controllerAs: 'book',
-        book: function(Books, $stateParams) {
-            return  Books.get({bookId: $stateParams.bookId}).$promise.then(function(book){
-              return book;
-            });
-          }
-      })
-      .otherwise({
-        redirectTo: '/'
+        resolve: {
+          book: function(Books, $stateParams) {
+              return  Books.get({bookId: $stateParams.bookId}).$promise.then(function(book){
+                return book;
+              });
+            }
+        }
       });
 
-      $locationProvider.html5Mode(true);
+      $urlRouterProvider.otherwise('404');
+
+      // $locationProvider.html5Mode(true);
   })
 
   // Disable debug info and boost the performance

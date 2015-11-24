@@ -33,3 +33,11 @@
 </div>
 
 <!-- Books repeat -->
+
+<li dir-paginate="book in books | itemsPerPage: 10" total-items="totalBooks" current-page="pagination.current">
+  {{book._source.description}}
+</li>
+
+<h1 data-ng-hide="books || books.length">No Books Found</h1> 
+    
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="/views/includes/pagination.tpl.html"></dir-pagination-controls>

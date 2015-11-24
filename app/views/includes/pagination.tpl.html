@@ -1,0 +1,5 @@
+<ul class="list-inline pagination" ng-if="1 < pages.length">
+    <li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }" ng-click="setCurrent(pageNumber)">
+        {{ pageNumber }}
+    </li>
+</ul>

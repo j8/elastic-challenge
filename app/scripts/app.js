@@ -51,7 +51,6 @@ angular
 
       $urlRouterProvider.otherwise('/');
 
-      // $locationProvider.html5Mode(true);
   })
 
   // Disable debug info and boost the performance

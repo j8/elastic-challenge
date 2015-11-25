@@ -7,3 +7,54 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import "_books.scss";
 
+.theme-light {
+    background-color: #f4f1ec;
+    color: #2A2A2A;
+}
+
+.font-lato {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+}
+
+.navbar-brand {
+
+	padding: 0;
+
+	.sidebar-logo {
+		padding: 0;
+		margin: 0;
+	    -webkit-flex-grow: 1;
+	    -ms-flex-positive: 1;
+	    flex-grow: 1;
+	    -webkit-flex-shrink: 1;
+	    -ms-flex-negative: 1;
+	    flex-shrink: 1;
+	    color: white;
+	}
+}
+
+.navbar-default {
+	background-color: #2a2a2a;
+    color: #FFF;
+
+    .navbar-nav {
+    	& > li {
+    		& > a {
+    			background-color: #abd733 !important;
+    			color: #FFF !important;
+    		}
+    	} 
+    }
+    	
+}

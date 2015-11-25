@@ -40,5 +40,8 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
   }
 }

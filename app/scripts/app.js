@@ -20,7 +20,7 @@ angular
     'relativeDate'
   ])
   .constant('production', false)
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('books', {
         url: '/',

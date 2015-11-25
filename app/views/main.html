@@ -3,10 +3,12 @@
 
     <div class="form-group">
        <label for="exampleInputName2">Find me the best</label>
-       <select class="form-control">
-         <option>Fiction</option>
-         <option>Non-Fiction</option>
+
+       <select class="form-control" ng-model="query.topGenre">
+          <option value="">---Please select---</option>
+         <option ng-repeat="option in data.topGenres" value="{{option}}">{{option}}</option>
        </select>
+
      </div>
 
   </div>
@@ -14,12 +16,10 @@
 
     <div class="form-group">
        <label for="exampleInputName2">books about</label>
-       <select class="form-control">
-         <option>Adventure</option>
-         <option>2</option>
-         <option>3</option>
-         <option>4</option>
-         <option>5</option>
+       
+       <select class="form-control" ng-model="query.category">
+          <option value="">---Please select---</option>
+          <option ng-repeat="option in data.categories" value="{{option}}">{{option}}</option>
        </select>
      </div>
 

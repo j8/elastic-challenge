@@ -42,4 +42,18 @@
 	input {
 		width: 100%;
 	}
+
+
+	.right-icon {
+	    position: relative;
+	}
+	.right-icon input {
+	    padding-right: 30px;    
+	}
+	.right-icon i {
+	    position: absolute;
+	    right: 0px;
+	    padding: 10px 12px;
+	    pointer-events: none;
+	}
 }

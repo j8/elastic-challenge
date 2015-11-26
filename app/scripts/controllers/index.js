@@ -9,54 +9,15 @@
  */
 
 angular.module('reedsyChallengeApp')
-  .controller('IndexCtrl', function ($scope, $http, $sanitize, books, Books) {
+  .controller('IndexCtrl', function ($scope, $http, $sanitize, config, categories, books, Books) {
 
   	// Scope books
   	$scope.books = books.hits;
 
-  	// Available Genres and Categories
+  	// Fetch available Genres and Categories from the server
 
-  	$scope.data = {
-		topGenres: [
-			'Fiction',
-			'Non-Fiction'
-		],
-		categories: [
-			'Thriller',
-			'Health',
-			'Social Sciences',
-			'Humor',
-			'Fantasy',
-			'History',
-			'Medical Books',
-			'Technology',
-			'Literature',
-			'Comics',
-			'Self-Help',
-			'Relationships',
-			'Arts',
-			'Christian Books',
-			'Calendars',
-			'Business',
-			'Engineering',
-			'Religion',
-			'Science Fiction',
-			'Sciences',
-			'Parenting',
-			'Children\'s Books',
-			'Travel',
-			'Law',
-			'Sports',
-			'Romance',
-			'Teen',
-			'Biographies',
-			'Cookbooks',
-			'Education',
-			'Spirituality',
-			'Computers',
-			'Politics'
-		]
-  	 };
+  	$scope.categoryData = categories;
+
   	// Search
 
   	$scope.query = {};
@@ -74,7 +35,7 @@ angular.module('reedsyChallengeApp')
 
 	  	     $scope.wait = true;
 
-	  	     $http.get('http://localhost:8080/api/search/books?q=' + text + '&genres=' + category + '&root_genres=' + topGengre).success(function(books) {
+	  	     $http.get(config.apiBackend + '/api/search/books?q=' + text + '&genres=' + category + '&root_genres=' + topGengre).success(function(books) {
 	  	         $scope.books = books.hits;
 	  	         $scope.totalBooks = books.total;
 	  	         $scope.wait = false;
@@ -95,7 +56,7 @@ angular.module('reedsyChallengeApp')
 
   	// Pagination
 
-	 $scope.booksPerPage = 10; // this should match however many results your API puts on one page
+	 $scope.booksPerPage = config.booksPerPage; // this should match however many results your API puts on one page
 	 $scope.totalBooks = books.total;
 
 	 $scope.pagination = {

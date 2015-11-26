@@ -1,11 +1,7 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/';
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import 'bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
 // endbower
-
-// Import books styles
-
-@import "_books.scss";
 
 .theme-light {
     background-color: #f4f1ec;
@@ -23,8 +19,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    -webkit-font-feature-settings: "kern" 1;
-    -moz-font-feature-settings: "kern" 1;
+    -webkit-font-feature-settings: 'kern' 1;
+    -moz-font-feature-settings: 'kern' 1;
 }
 
 ul {
@@ -36,6 +32,17 @@ ul {
 .navbar-brand {
 
 	padding: 0;
+
+    display: flex;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0px !important;
+    height: 50px;
+    padding-right: 15px;
 
 	.sidebar-logo {
 		padding: 0;
@@ -64,3 +71,11 @@ ul {
     }
     	
 }
+
+// Import books styles
+
+@import '_books.scss';
+
+// Import components
+
+@import '_components.scss';

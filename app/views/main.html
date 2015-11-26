@@ -6,7 +6,7 @@
 
        <select class="form-control" ng-model="query.topGenre">
           <option value="">---Please select---</option>
-         <option ng-repeat="option in data.topGenres" value="{{option}}">{{option}}</option>
+         <option ng-repeat="option in categoryData.topGenres" value="{{option}}">{{option}}</option>
        </select>
 
      </div>
@@ -19,7 +19,7 @@
        
        <select class="form-control" ng-model="query.category">
           <option value="">---Please select---</option>
-          <option ng-repeat="option in data.categories" value="{{option}}">{{option}}</option>
+          <option ng-repeat="option in categoryData.categories" value="{{option}}">{{option}}</option>
        </select>
      </div>
 
@@ -74,6 +74,10 @@
 </div>
 
 
-<h1 data-ng-hide="books || books.length">No Books Found</h1> 
-    
-<dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="/views/includes/pagination.tpl.html"></dir-pagination-controls>
+<h1 data-ng-hide="books || books.length">No Books Found</h1>
+
+<!-- Pagination -->
+
+<div class="pagination-template">
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="/views/includes/pagination.tpl.html"></dir-pagination-controls>
+</div>

@@ -8,10 +8,10 @@
  * Factory in the reedsyChallengeApp.
  */
 angular.module('reedsyChallengeApp')
-  .factory('Books', function ($resource) {
+  .factory('Books', function ($resource, config) {
 
     // Public API here
-    return $resource('http://localhost:8080/api/books/:bookId', {bookId:'@id'}, 
+    return $resource(config.apiBackend + '/api/books/:bookId', {bookId:'@id'}, 
     {
       update: {
         method: 'PUT'

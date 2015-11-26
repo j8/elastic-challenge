@@ -19,7 +19,11 @@ angular
     'angularUtils.directives.dirPagination',
     'relativeDate'
   ])
-  .constant('production', false)
+  .constant('config', {
+    'production': false,
+    'booksPerPage': 12,
+    'apiBackend': 'http://localhost:8080'
+  })
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('books', {
@@ -32,7 +36,12 @@ angular
              return Books.query({page: 1}).$promise.then(function(books){
                  return books;
                });
-           }
+           },
+           categories: function(config, $http) {
+            return $http({method: 'GET', url: config.apiBackend + '/api/config'}).then(function(response) {
+                return response.data;
+            });
+           } 
         }
       })
       .state('book', {
@@ -55,8 +64,8 @@ angular
 
   // Disable debug info and boost the performance
 
-  .config(['$compileProvider', 'production', function ($compileProvider, production) {
-      if(production) {
+  .config(['$compileProvider', 'config', function ($compileProvider, config) {
+      if(config.production) {
           $compileProvider.debugInfoEnabled(false);
       }
   }]);

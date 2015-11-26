@@ -8,6 +8,10 @@ var client = new elasticsearch.Client({
 var server = restify.createServer();
 server.use(restify.queryParser());
 
+var config = {
+  perPage: 12
+};
+
 // Enable CORS *** THIS IS FOR THE DEMO PURPOSES ONLY ***
 
 server.use(
@@ -18,11 +22,60 @@ server.use(
   }
 );
 
+// Get config
+
+server.get('api/config', function(req, res, next) {
+
+  var data = {
+    topGenres: [
+      'Fiction',
+      'Non-Fiction'
+    ],
+    categories: [
+      'Thriller',
+      'Health',
+      'Social Sciences',
+      'Humor',
+      'Fantasy',
+      'History',
+      'Medical Books',
+      'Technology',
+      'Literature',
+      'Comics',
+      'Self-Help',
+      'Relationships',
+      'Arts',
+      'Christian Books',
+      'Calendars',
+      'Business',
+      'Engineering',
+      'Religion',
+      'Science Fiction',
+      'Sciences',
+      'Parenting',
+      'Children\'s Books',
+      'Travel',
+      'Law',
+      'Sports',
+      'Romance',
+      'Teen',
+      'Biographies',
+      'Cookbooks',
+      'Education',
+      'Spirituality',
+      'Computers',
+      'Politics'
+    ]
+ };
+  res.send(data);
+  next();
+});
+
 // Fetch all books
 
 server.get('api/books', function(req, res, next) {
 
-  var perPage = 10
+  var perPage = config.perPage
   , page = Math.max(0, req.query.page) - 1;
 
   client.search({
@@ -55,7 +108,7 @@ server.get('api/books', function(req, res, next) {
 
 server.get('api/books/:id', function(req, res, next) {
 
-  var perPage = 10
+  var perPage = config.perPage
   , page = Math.max(0, req.query.page) - 1;
 
   client.search({
@@ -88,7 +141,7 @@ server.get('api/books/:id', function(req, res, next) {
 
 server.get('api/search/books', function(req, res, next) {
 
-  var perPage = 10
+  var perPage = config.perPage
       , page = Math.max(0, req.query.page) - 1;
     // Init es client and use lodash to escape to query strings on backend too
 

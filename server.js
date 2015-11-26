@@ -1,9 +1,8 @@
 var restify = require('restify');
-var _ = require('lodash');
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
   host: 'localhost:9200',
-  log: 'info'
+  // log: 'trace'
 });
 
 var server = restify.createServer();
@@ -19,8 +18,6 @@ server.use(
   }
 );
 
-// Fetch categories and genres
-
 // Fetch all books
 
 server.get('api/books', function(req, res, next) {
@@ -32,14 +29,17 @@ server.get('api/books', function(req, res, next) {
     index: 'books',
     type: 'book',
     body: {
-  	query: {
-  		match_all : {}
-  	},
+	query: {
+	// match: {
+	//   body: 'elasticsearch'
+	// }
+		match_all : {}
+	},
 	from: perPage * page,
 	size: perPage
     }
   }).then(function (resp) {
-    var hits = resp.hits;
+      var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
@@ -62,16 +62,17 @@ server.get('api/books/:id', function(req, res, next) {
     index: 'books',
     type: 'book',
     body: {
-  	query: {
-  	match: {
-  	  id: req.params.id
-  	}
+	query: {
+	match: {
+	  id: req.params.id
+	}
+		// match_all : {}
 	},
 	from: perPage * page,
 	size: perPage
     }
   }).then(function (resp) {
-    var hits = resp.hits;
+      var hits = resp.hits;
 	  res.send(hits);
 	  next();
   }, function (err) {
@@ -95,21 +96,18 @@ server.get('api/search/books', function(req, res, next) {
         index: 'books',
         type: 'book',
         body: {
-          query: {
-            bool: {
-              should: [
-                { match: { "name":  _.escape(req.query.q) }},
-                { match: { "author.name": _.escape(req.query.q) }}
+          "query": {
+            "bool": {
+              "should": [
+                { "match": { "name":  req.query.q }},
+                { "match": { "author.name": req.query.q   }}
               ],
-            },
-            // filtered : {
-            //     filter: [
-            //         { "term": { "genre.name":  _.escape(req.query.genres) }},
-            //         { "term": { "genre.category":  _.escape(req.query.root_genres) }}
-            //     ]
-            // }
-          } ,
 
+              "filter": [ 
+                { "term":  { "genre.name": req.query.genres }}
+              ]
+            }
+          },
           from: perPage * page,
           size: perPage
         }

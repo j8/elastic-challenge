@@ -13,6 +13,7 @@ angular.module('reedsyChallengeApp')
     // Public API here
     return $resource(config.apiBackend + '/api/books/:bookId', {bookId:'@id'}, 
     {
+      // PUT method for future purposes
       update: {
         method: 'PUT'
       },

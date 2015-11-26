@@ -33,6 +33,7 @@ angular.module('reedsyChallengeApp')
 	  	     var topGengre = $sanitize($scope.query.topGenre);
 	  	     var category = $sanitize($scope.query.category);
 
+	  	     // Cache spinner var if needed
 	  	     $scope.wait = true;
 
 	  	     $http.get(config.apiBackend + '/api/search/books?q=' + text + '&genres=' + category + '&root_genres=' + topGengre).success(function(books) {

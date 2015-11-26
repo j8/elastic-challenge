@@ -1,6 +1,10 @@
 .pagination-template {
 	position: relative;
-    padding: 30px;
+
+	@media (min-width: 992px) {
+	    padding: 30px;
+	}
+
     text-align: center;
 
 	.pagination {
@@ -20,5 +24,16 @@
 	    		color: #FFF;
 	    	}
 	    }
+	}
+}
+
+.arrow {
+	color: black;
+	font-size: 14px;
+	display: block;
+	padding-bottom: 10px;
+
+	&:hover {
+		color: black;
 	}
 }

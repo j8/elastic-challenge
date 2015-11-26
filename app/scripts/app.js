@@ -61,6 +61,12 @@ angular
       $urlRouterProvider.otherwise('/');
 
   })
+  // Reset UI Router behaviour on keep the scroll
+  .run(['$rootScope', '$state', function ($rootScope) {
+      $rootScope.$on('$stateChangeSuccess', function() {
+       document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+  }])
 
   // Disable debug info and boost the performance
 

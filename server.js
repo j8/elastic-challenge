@@ -23,6 +23,7 @@ server.use(
 );
 
 // Get config
+// The cateogries and genres should come from some db
 
 server.get('api/config', function(req, res, next) {
 
@@ -116,10 +117,15 @@ server.get('api/books/:id', function(req, res, next) {
     type: 'book',
     body: {
 	query: {
-	match: {
-	  id: req.params.id
-	}
-		// match_all : {}
+  	match: {
+  	  id: req.params.id
+  	},
+    // more_like_this : {
+    //     fields : ['genre.category', 'genre.name'],
+    //     like : 'Health',
+    //     min_term_freq : 1,
+    //     max_query_terms : 3
+    // }
 	},
 	from: perPage * page,
 	size: perPage
@@ -149,11 +155,11 @@ server.get('api/search/books', function(req, res, next) {
         index: 'books',
         type: 'book',
         body: {
-          "query": {
-            "bool": {
-              "should": [
-                { "match": { "name":  req.query.q }},
-                { "match": { "author.name": req.query.q   }}
+          query: {
+            bool: {
+              should: [
+                { match: { "name":  req.query.q }},
+                { match: { "author.name": req.query.q   }}
               ]
             }
           },

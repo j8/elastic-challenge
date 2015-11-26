@@ -1,17 +1,21 @@
 .book {
-	height: 400px;
 	position: relative;
     margin: 15px 0;
     border-radius: 5px;
 	background-color: #fff;
     color: #2A2A2A;
-    text-align: center;
+    text-align: left;
+	padding: 8px;
 
 	img {
-		width: 200px;
+
 	}
 
-	h4 {
+	h4.title {
+		margin-top: 20px;
+		font-weight: 500;
+		padding-bottom: 12px;
+
 		a {
 			color: #2a2a2a !important;
 			font-size: 20px;;
@@ -19,7 +23,9 @@
 	}
 
 
-	h5 {
+	h5.author {
+		padding-bottom: 15px;
+		
 		a {
 			color: #2A2A2A;
 			font-size: 14px;
@@ -28,10 +34,104 @@
 
 	.likes {
 		cursor: pointer;
+		color: #aab8c2;
+		padding-right: 5px;
+
+		&:hover {
+			color: #dd2e44;
+		}
 	}
 }
 
-.bookEntry {
-	background-color: #363636;
-	color: #FFF;
+
+#bookEntry {
+	section.bookHolder {
+		padding-top: 80px;
+		padding-bottom: 70px;
+		background-color: #363636;
+		color: #FFF;
+
+		h2 {
+			padding-top: 20px;
+			padding-bottom: 45px;
+			font-size: 24px;
+		}
+
+		.categories {
+			ul {
+				padding-top: 20px;
+				li {
+					float: left;
+					padding-right: 10px;
+
+					span {
+						background-color: #f4f1ec;
+						color: #2A2A2A;
+						padding: 9px 15px;
+					    font-size: 16px;
+					    cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+
+	section.bookContent {
+		background-color: white;
+		padding-top: 70px;
+		padding-bottom: 85px;
+
+		.introduction {
+			b {
+				padding-bottom: 15px;
+			}
+
+			h3 {
+				padding-bottom: 40px;
+			}
+
+			p {
+				margin-bottom: 40px;
+			}
+
+			&::after {
+				display: block;
+				content: '';
+				border: 1px solid #ccc;
+				width: 144px;
+				margin: 0 auto;
+				margin-bottom: 60px;
+				position: relative;
+			}
+		}
+
+		.author {
+			text-align: center;
+
+			img {
+				display: inline-block;
+				width: 100px;
+			}
+
+			b {	
+				margin-top: 30px;
+				font-size: 22px;
+				display: block;
+			}
+		}
+	}
+	
+	section.recommended {
+		background-color: #363636;
+		color: white;
+		text-align: center;
+
+		padding-top: 50px;
+		padding-bottom: 50px;
+
+		h3 {
+			font-size: 28px;
+			padding-bottom: 18px;
+		}
+	}
 }

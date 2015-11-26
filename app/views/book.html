@@ -1,38 +1,112 @@
-<div class="row">
+<div id="bookEntry">
 	<div id="actionBar">
 		<div class="container">
-			<a ui-sref="books">Back</a>
+			<a ui-sref="books" class="arrow">
+				<span class="glyphicon glyphicon-menu-left"></span>
+				Back
+			</a>
 		</div>
 		
 	</div>
 
-	<section class="bookEntry">
+	<section class="bookHolder">
 		<div class="container">
 			<div class="title">
-				<h1>Lorem ipsum</h1>
+				<h1>{{bookEntry._source.name}}</h1>
 			</div>
 			<div class="subtitle">
-				<h2>By Mr. Lorem Ipsum</h2>
+				<h2>By {{bookEntry._source.author.name}}</h2>
 			</div>
 
 			<div class="">
-				<p>Some text</p>
+				<p>{{bookEntry._source.description}}</p>
 			</div>
 
 			<div class="categories">
+				<h5>Categories:</h5>
 				<ul>
-					<!-- <li ng-repeat="book.ca"></li> -->
+					<li><span>{{bookEntry._source.genre.category}}</span></li>
+					<li><span>{{bookEntry._source.genre.name}}</span></li>
 				</ul>
 			</div>
 		</div>
 	</section>
 
-	<section class="container">
-		<b>Introduction</b>
-		<h3>Nula lorem ipsumis</h3>
-		<p>Content goes here</p>
+	<!-- Main book section -->
+
+	<section class="bookContent">
+		<div class="container">
+
+			<div class="introduction">
+				<b>Introduction</b>
+				<h3>Nula lorem ipsumis</h3>
+				<p ng-repeat="content in ::bookEntry._source.introduction">{{content.content}}</p>
+			</div>
+
+			<!-- Author -->
+
+			<div class="author">
+				<img class="img-circle" ng-src="{{bookEntry._source.author.avatar}}" alt="">
+				<b>Written By {{bookEntry._source.author.name}}</b>
+			</div>
+			
+		</div>
 	</section>
 
+	<!-- Recommended -->
 
-{{bookEntry}}
+	<section class="recommended">
+
+		<div class="container">
+			<h3>Similar reading</h3>
+			<p>If you liked this book, we recommend you check out these emerging titles.</p>
+			
+			<div class="row">
+
+			  <ul>
+			    <!-- Books repeat -->
+			      <li class="col-md-4" ng-repeat="recommended in books">
+
+			        <div class="book clearfix">
+			          <!-- Image -->
+			          <a ui-sref="book({bookId: book._id})">
+			            <div class="img">
+			              <img ng-src="{{book._source.cover}}" alt="">
+			            </div>
+			          </a>
+
+			        <!-- title -->
+			          <h4 class="title">
+			            <a href="">
+			                {{book._source.name}}.        
+			            </a>
+			          </h4>
+
+			          <!-- Author -->
+			          <h5 class="title">
+			            <a href="">
+			                By {{book._source.author.name}}.        
+			            </a>
+			          </h5>
+
+			          <div class="likes pull-left">
+			            <span class="glyphicon glyphicon-heart"></span> {{book._source.likes}}
+			          </div>
+
+			          <div class="time pull-right">
+			            {{book._source.published | relativeDate}}
+			          </div>
+			        </div>
+
+			      </li>
+
+			      <li>
+			      	test
+			      </li>
+			  </ul>
+
+			</div>
+		</div>
+	</section>
+
 </div>

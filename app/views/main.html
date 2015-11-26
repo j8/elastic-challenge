@@ -7,7 +7,7 @@
 
          <select class="form-control" ng-model="query.topGenre">
             <option value="">---Please select---</option>
-           <option ng-repeat="option in categoryData.topGenres" value="{{option}}">{{option}}</option>
+           <option ng-repeat="option in ::categoryData.topGenres" value="{{option}}">{{option}}</option>
          </select>
 
        </div>
@@ -20,7 +20,7 @@
          
          <select class="form-control" ng-model="query.category">
             <option value="">---Please select---</option>
-            <option ng-repeat="option in categoryData.categories" value="{{option}}">{{option}}</option>
+            <option ng-repeat="option in ::categoryData.categories" value="{{option}}">{{option}}</option>
          </select>
        </div>
 
@@ -41,21 +41,19 @@
           <div class="book clearfix">
             <!-- Image -->
             <a ui-sref="book({bookId: book._id})">
-              <div class="img">
-                <img ng-src="{{book._source.cover}}" alt="">
-              </div>
+                <img class="img-responsive" ng-src="{{book._source.cover}}" alt="">
             </a>
 
           <!-- title -->
             <h4 class="title">
-              <a href="">
+              <a ui-sref="book({bookId: book._id})">
                   {{book._source.name}}.        
               </a>
             </h4>
 
             <!-- Author -->
-            <h5 class="title">
-              <a href="">
+            <h5 class="author">
+              <a ui-sref="book({bookId: book._id})">
                   By {{book._source.author.name}}.        
               </a>
             </h5>

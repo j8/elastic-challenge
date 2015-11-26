@@ -23,6 +23,11 @@ body {
     -moz-font-feature-settings: 'kern' 1;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    padding: 0;
+    margin: 0;
+}
+
 ul {
     padding: 0;
     margin: 0;
@@ -70,6 +75,11 @@ ul {
     	} 
     }
     	
+}
+
+footer {
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 // Import books styles

@@ -65,44 +65,92 @@
 
 			  <ul>
 			    <!-- Books repeat -->
-			      <li class="col-md-4" ng-repeat="recommended in books">
+				<li  class="col-md-4">
+				<div class="book clearfix">
+				<!-- Image -->
+				<a ui-sref="book({bookId: book._id})" href="#/books/b485132922">
+				<img class="img-responsive" ng-src="http://lorempixel.com/500/700/" alt="" src="http://lorempixel.com/500/700/">
+				</a>
+				<!-- title -->
+				<h4 class="title">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				The Unbearable Lightness of Being.        
+				</a>
+				</h4>
+				<!-- Author -->
+				<h5 class="author">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				By Milan Kundera.        
+				</a>
+				</h5>
+				<div class="likes pull-left ng-binding">
+				<span class="glyphicon glyphicon-heart"></span> 764
+				</div>
 
-			        <div class="book clearfix">
-			          <!-- Image -->
-			          <a ui-sref="book({bookId: book._id})">
-			            <div class="img">
-			              <img ng-src="{{book._source.cover}}" alt="">
-			            </div>
-			          </a>
+				<div class="time pull-right ng-binding">
+				over a year ago
+				</div>
+				</div>
 
-			        <!-- title -->
-			          <h4 class="title">
-			            <a href="">
-			                {{book._source.name}}.        
-			            </a>
-			          </h4>
+				</li>
 
-			          <!-- Author -->
-			          <h5 class="title">
-			            <a href="">
-			                By {{book._source.author.name}}.        
-			            </a>
-			          </h5>
+				<li  class="col-md-4">
+				<div class="book clearfix">
+				<!-- Image -->
+				<a ui-sref="book({bookId: book._id})" href="#/books/b485132922">
+				<img class="img-responsive" ng-src="http://lorempixel.com/500/700/" alt="" src="http://lorempixel.com/500/700/">
+				</a>
+				<!-- title -->
+				<h4 class="title">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				The Unbearable Lightness of Being.        
+				</a>
+				</h4>
+				<!-- Author -->
+				<h5 class="author">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				By Milan Kundera.        
+				</a>
+				</h5>
+				<div class="likes pull-left ng-binding">
+				<span class="glyphicon glyphicon-heart"></span> 764
+				</div>
 
-			          <div class="likes pull-left">
-			            <span class="glyphicon glyphicon-heart"></span> {{book._source.likes}}
-			          </div>
+				<div class="time pull-right ng-binding">
+				over a year ago
+				</div>
+				</div>
 
-			          <div class="time pull-right">
-			            {{book._source.published | relativeDate}}
-			          </div>
-			        </div>
+				</li>
 
-			      </li>
+				<li  class="col-md-4">
+				<div class="book clearfix">
+				<!-- Image -->
+				<a ui-sref="book({bookId: book._id})" href="#/books/b485132922">
+				<img class="img-responsive" ng-src="http://lorempixel.com/500/700/" alt="" src="http://lorempixel.com/500/700/">
+				</a>
+				<!-- title -->
+				<h4 class="title">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				The Unbearable Lightness of Being.        
+				</a>
+				</h4>
+				<!-- Author -->
+				<h5 class="author">
+				<a ui-sref="book({bookId: book._id})" class="ng-binding" href="#/books/b485132922">
+				By Milan Kundera.        
+				</a>
+				</h5>
+				<div class="likes pull-left ng-binding">
+				<span class="glyphicon glyphicon-heart"></span> 764
+				</div>
 
-			      <li>
-			      	test
-			      </li>
+				<div class="time pull-right ng-binding">
+				over a year ago
+				</div>
+				</div>
+
+				</li>
 			  </ul>
 
 			</div>

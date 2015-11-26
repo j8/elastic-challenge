@@ -5,7 +5,7 @@
       <div class="form-group">
          <label for="exampleInputName2">Find me the best</label>
          <select class="form-control" ng-model="query.topGenre">
-            <option value="">---Please select---</option>
+            <option value="">---Select genre---</option>
            <option ng-repeat="option in ::categoryData.topGenres" value="{{option}}">{{option}}</option>
          </select>
        </div>
@@ -15,7 +15,7 @@
       <div class="form-group">
          <label for="exampleInputName2">books about</label>
          <select class="form-control" ng-model="query.category">
-            <option value="">---Please select---</option>
+            <option value="">---Select category---</option>
             <option ng-repeat="option in ::categoryData.categories" value="{{option}}">{{option}}</option>
          </select>
        </div>

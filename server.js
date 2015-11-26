@@ -116,24 +116,53 @@ server.get('api/books/:id', function(req, res, next) {
     index: 'books',
     type: 'book',
     body: {
-	query: {
-  	match: {
-  	  id: req.params.id
-  	},
-    // more_like_this : {
-    //     fields : ['genre.category', 'genre.name'],
-    //     like : 'Health',
-    //     min_term_freq : 1,
-    //     max_query_terms : 3
-    // }
-	},
+  query: {
+    match: {
+      id: req.params.id
+    }
+  },
 	from: perPage * page,
 	size: perPage
     }
   }).then(function (resp) {
-      var hits = resp.hits;
+    var hits = resp.hits;
 	  res.send(hits);
 	  next();
+  }, function (err) {
+    res.send({
+      error: err.message 
+    });
+    next();
+  });
+
+});
+
+// Recommendation engine
+
+server.get('api/books/:id/recommend', function(req, res, next) {
+
+  client.search({
+    body: {
+      query: {
+        more_like_this : {
+            "fields" : ['genre.category', 'genre.name'],
+            "docs" : [
+            {
+                "_index" : "books",
+                "_type" : "book",
+                "_id" : req.params.id
+            },
+            ],
+            "min_term_freq" : 1,
+            "max_query_terms" : 12,
+        },
+      },
+      size: 3
+    }
+  }).then(function (resp) {
+    var hits = resp.hits;
+    res.send(hits);
+    next();
   }, function (err) {
     res.send({
       error: err.message 

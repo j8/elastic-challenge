@@ -51,11 +51,16 @@ angular
         controllerAs: 'book',
         resolve: {
           book: function(Books, $stateParams) {
-              return  Books.get({bookId: $stateParams.bookId}).$promise.then(function(book){
-                return book;
-              });
-            }
-        }
+            return  Books.get({bookId: $stateParams.bookId}).$promise.then(function(book){
+              return book;
+            });
+          },
+          recommend: function(config, $http, $stateParams) {
+            return $http({method: 'GET', url: config.apiBackend + '/api/books/' + $stateParams.bookId + "/recommend"}).then(function(response) {
+              return response.data;
+            });
+          }
+       } 
       });
 
       $urlRouterProvider.otherwise('/');

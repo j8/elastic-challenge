@@ -28,10 +28,12 @@ sudo apt-get install jq
 ```
 
 ### Install Elasticsearch
-
+Note: version 2.0.0_1 should be installed to support the newest queries
 ```
 brew install elastic
 ```
+elasticsearch -v
+elasticsearch 2.0.0_1
 
 ### Insert books.json into Elasticsearch
 

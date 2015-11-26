@@ -20,7 +20,7 @@ angular
     'relativeDate'
   ])
   .constant('config', {
-    'production': false,
+    'production': false, //You an use this tag with grunt for additional configs
     'booksPerPage': 12,
     'apiBackend': 'http://localhost:8080'
   })

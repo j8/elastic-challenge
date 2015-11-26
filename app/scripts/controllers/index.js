@@ -51,7 +51,7 @@ angular.module('reedsyChallengeApp')
 	  	       $scope.books = books.hits;
 	  	     });
 	  	   }
-  	}, true);
+  	}, true); //Deep scope watching
 
 
   	// Pagination

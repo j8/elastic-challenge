@@ -89,7 +89,7 @@ server.get('api/search/books', function(req, res, next) {
 
   var perPage = 10
       , page = Math.max(0, req.query.page) - 1;
-    // Init es client and use lodash to escape to query strings
+    // Init es client and use lodash to escape to query strings on backend too
 
       client.search({
         index: 'books',
@@ -101,13 +101,14 @@ server.get('api/search/books', function(req, res, next) {
                 { match: { "name":  _.escape(req.query.q) }},
                 { match: { "author.name": _.escape(req.query.q) }}
               ],
-              filter : [
-                { "genre.name":  _.escape(req.query.genres) },
-                { "genre.category":  _.escape(req.query.root_genres) }
-              ],
-              "minimum_should_match" : 1
-            }
-          },
+            },
+            // filtered : {
+            //     filter: [
+            //         { "term": { "genre.name":  _.escape(req.query.genres) }},
+            //         { "term": { "genre.category":  _.escape(req.query.root_genres) }}
+            //     ]
+            // }
+          } ,
 
           from: perPage * page,
           size: perPage

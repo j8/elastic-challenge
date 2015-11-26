@@ -66,6 +66,7 @@ angular.module('reedsyChallengeApp')
 
   	$scope.$watch('query', function(nv,ov) {
   		if($scope.query.topGenre.length > 0 && nv!==ov || $scope.query.category.length > 0 && nv!==ov || $scope.query.keyword.length > 0 && nv!==ov) {
+  			
 	  	   	// Escape entries
 	  	     var text =  $sanitize($scope.query.keyword);
 	  	     var topGengre = $sanitize($scope.query.topGenre);

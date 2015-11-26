@@ -1,83 +1,85 @@
-<div class="row">
-  <div class="col-md-4 form-inline">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 form-inline">
 
-    <div class="form-group">
-       <label for="exampleInputName2">Find me the best</label>
+      <div class="form-group">
+         <label for="exampleInputName2">Find me the best</label>
 
-       <select class="form-control" ng-model="query.topGenre">
-          <option value="">---Please select---</option>
-         <option ng-repeat="option in categoryData.topGenres" value="{{option}}">{{option}}</option>
-       </select>
+         <select class="form-control" ng-model="query.topGenre">
+            <option value="">---Please select---</option>
+           <option ng-repeat="option in categoryData.topGenres" value="{{option}}">{{option}}</option>
+         </select>
 
-     </div>
+       </div>
 
-  </div>
-  <div class="col-md-4 form-inline">
+    </div>
+    <div class="col-md-4 form-inline">
 
-    <div class="form-group">
-       <label for="exampleInputName2">books about</label>
-       
-       <select class="form-control" ng-model="query.category">
-          <option value="">---Please select---</option>
-          <option ng-repeat="option in categoryData.categories" value="{{option}}">{{option}}</option>
-       </select>
-     </div>
+      <div class="form-group">
+         <label for="exampleInputName2">books about</label>
+         
+         <select class="form-control" ng-model="query.category">
+            <option value="">---Please select---</option>
+            <option ng-repeat="option in categoryData.categories" value="{{option}}">{{option}}</option>
+         </select>
+       </div>
 
- </div>
-  <div class="col-md-4">
-    <div class="col-xs-12 col-sm-4 form-group">
-      <input class="input" type="text" ng-model="query.keyword" class="form-control" id="search" placeholder="Search books" ng-model-options="{ debounce: 500 }">
+   </div>
+    <div class="col-md-4">
+      <div class="col-xs-12 col-sm-4 form-group">
+        <input class="input" type="text" ng-model="query.keyword" class="form-control" id="search" placeholder="Search books" ng-model-options="{ debounce: 500 }">
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row">
+  <div class="row">
 
-  <ul>
-    <!-- Books repeat -->
-      <li class="col-md-4" dir-paginate="book in books | itemsPerPage: booksPerPage" total-items="totalBooks" current-page="pagination.current">
+    <ul>
+      <!-- Books repeat -->
+        <li class="col-md-4" dir-paginate="book in books | itemsPerPage: booksPerPage" total-items="totalBooks" current-page="pagination.current">
 
-        <div class="bookHolder clearfix">
-          <!-- Image -->
-          <a ui-sref="book({bookId: book._id})">
-            <div class="img">
-              <img ng-src="{{book._source.cover}}" alt="">
+          <div class="book clearfix">
+            <!-- Image -->
+            <a ui-sref="book({bookId: book._id})">
+              <div class="img">
+                <img ng-src="{{book._source.cover}}" alt="">
+              </div>
+            </a>
+
+          <!-- title -->
+            <h4 class="title">
+              <a href="">
+                  {{book._source.name}}.        
+              </a>
+            </h4>
+
+            <!-- Author -->
+            <h5 class="title">
+              <a href="">
+                  By {{book._source.author.name}}.        
+              </a>
+            </h5>
+
+            <div class="likes pull-left">
+              <span class="glyphicon glyphicon-heart"></span> {{book._source.likes}}
             </div>
-          </a>
 
-        <!-- title -->
-          <h4 class="title">
-            <a href="">
-                {{book._source.name}}.        
-            </a>
-          </h4>
-
-          <!-- Author -->
-          <h5 class="title">
-            <a href="">
-                By {{book._source.author.name}}.        
-            </a>
-          </h5>
-
-          <div class="likes pull-left">
-            <span class="glyphicon glyphicon-heart"></span> {{book._source.likes}}
+            <div class="time pull-right">
+              {{book._source.published | relativeDate}}
+            </div>
           </div>
 
-          <div class="time pull-right">
-            {{book._source.published | relativeDate}}
-          </div>
-        </div>
+        </li>
+    </ul>
 
-      </li>
-  </ul>
-
-</div>
+  </div>
 
 
-<h1 data-ng-hide="books || books.length">No Books Found</h1>
+  <h1 data-ng-hide="books || books.length">No Books Found</h1>
 
-<!-- Pagination -->
+  <!-- Pagination -->
 
-<div class="pagination-template">
-  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="/views/includes/pagination.tpl.html"></dir-pagination-controls>
+  <div class="pagination-template">
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="/views/includes/pagination.tpl.html"></dir-pagination-controls>
+  </div>
 </div>

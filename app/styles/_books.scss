@@ -1,7 +1,5 @@
-.bookHolder {
-
+.book {
 	height: 400px;
-
 	position: relative;
     margin: 15px 0;
     border-radius: 5px;
@@ -27,4 +25,13 @@
 			font-size: 14px;
 		}
 	}
+
+	.likes {
+		cursor: pointer;
+	}
+}
+
+.bookEntry {
+	background-color: #363636;
+	color: #FFF;
 }

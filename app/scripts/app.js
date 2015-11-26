@@ -21,7 +21,7 @@ angular
   ])
   .constant('config', {
     'production': false, //You an use this tag with grunt for additional configs
-    'booksPerPage': 12,
+    'booksPerPage': 12, // Note - you need to change this also in server.js
     'apiBackend': 'http://localhost:8080'
   })
   .config(function ($stateProvider, $urlRouterProvider) {

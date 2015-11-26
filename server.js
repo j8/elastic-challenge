@@ -154,10 +154,6 @@ server.get('api/search/books', function(req, res, next) {
               "should": [
                 { "match": { "name":  req.query.q }},
                 { "match": { "author.name": req.query.q   }}
-              ],
-
-              "filter": [ 
-                { "term":  { "genre.name": req.query.genres }}
               ]
             }
           },

@@ -30,13 +30,13 @@ angular.module('reedsyChallengeApp')
   			
 	  	   	// Escape entries
 	  	     var text =  $sanitize($scope.query.keyword);
-	  	     var topGengre = $sanitize($scope.query.topGenre);
+	  	     var topGenre = $sanitize($scope.query.topGenre);
 	  	     var category = $sanitize($scope.query.category);
 
 	  	     // Cache spinner var if needed
 	  	     $scope.wait = true;
 
-	  	     $http.get(config.apiBackend + '/api/search/books?q=' + text + '&genres=' + category + '&root_genres=' + topGengre).success(function(books) {
+	  	     $http.get(config.apiBackend + '/api/search/books?q=' + text + '&genres=' + category + '&root_genres=' + topGenre).success(function(books) {
 	  	         $scope.books = books.hits;
 	  	         $scope.totalBooks = books.total;
 	  	         $scope.wait = false;

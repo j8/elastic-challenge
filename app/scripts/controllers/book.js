@@ -14,6 +14,4 @@ angular.module('reedsyChallengeApp')
   	$scope.bookEntry = book.hits[0];
   	$scope.recommended = recommend.hits;
 
-  	console.log("recommend", $scope.recommended);
-  
   });

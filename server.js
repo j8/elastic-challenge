@@ -180,6 +180,9 @@ server.get('api/search/books', function(req, res, next) {
       , page = Math.max(0, req.query.page) - 1;
     // Init es client and use lodash to escape to query strings on backend too
 
+    console.log(req.query.genres);
+    console.log(req.query.root_genres);
+
       client.search({
         index: 'books',
         type: 'book',
@@ -187,10 +190,19 @@ server.get('api/search/books', function(req, res, next) {
           query: {
             bool: {
               should: [
-                { match: { "name":  req.query.q }},
-                { match: { "author.name": req.query.q   }}
+                { match: {
+                  "name":  {
+                    "query": req.query.q,
+                    "operator": "and"
+                    }
+                  }
+                },
+                { match: { "author.name": req.query.q }},
+                { match: { "genre.name":  req.query.genres}},
+                { match: { "genre.category":  req.query.root_genres}},
               ]
-            }
+            },
+
           },
           from: perPage * page,
           size: perPage

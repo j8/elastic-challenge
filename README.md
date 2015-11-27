@@ -2,7 +2,7 @@
 )
 # reedsy-challenge
 
-Reedsy challenge is AngularJS SPA app with Node.js and Elasticsearch backend. It demonstrates simple functionality of importing .json data in Elastic via command line and building simple REST client for connecting the data.
+Reedsy challenge is AngularJS SPA app with Node.js and Elasticsearch backend. It demonstrates simple functionality of importing .json data in Elastic via command line and building simple REST server for streaming the data to AngularJS front end.
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.14.0 and [restify](http://restify.com)

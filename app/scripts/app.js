@@ -56,7 +56,7 @@ angular
             });
           },
           recommend: function(config, $http, $stateParams) {
-            return $http({method: 'GET', url: config.apiBackend + '/api/books/' + $stateParams.bookId + "/recommend"}).then(function(response) {
+            return $http({method: 'GET', url: config.apiBackend + '/api/books/' + $stateParams.bookId + '/recommend'}).then(function(response) {
               return response.data;
             });
           }

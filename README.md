@@ -46,7 +46,7 @@ __Note: the project is build with Node.js v5.1.0__
 ### Clone the repo:
 
 ```
-git clone https://github.com/j8/reedsy-challenge.git
+git clone https://github.com/j8/elastic-challenge.git
 ```
 
 Install needed package dependancies
@@ -67,7 +67,7 @@ cat backend/books.json | jq -c '.[] | {"index": {"_index": "books", "_type": "bo
 
 Test if import is succesful by browsing to: ``http://localhost:9200/books/book/{id}``, for example ``http://localhost:9200/books/book/b334861393``
 
-# Run reedsy-challenge
+# Run elastic-challenge
 
 ### Run elasticsearch
 ```
